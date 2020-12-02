@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tyuanyao.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="已是废文，Notion已经可以用行间公式了。这是Notion还未开发行间公式(Inline Math)时的曲线救国方案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notion上打行内公式｜网页端和Mac电脑端">
+<meta property="og:url" content="http://tyuanyao.github.io/2020/05/26/notion_inline_math/index.html">
+<meta property="og:site_name" content="蛋炒饭">
+<meta property="og:description" content="已是废文，Notion已经可以用行间公式了。这是Notion还未开发行间公式(Inline Math)时的曲线救国方案。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/notion_math.gif">
+<meta property="og:image" content="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/tampermonkeyuse.gif">
+<meta property="og:image" content="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/check1.png">
+<meta property="og:image" content="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/check2.png">
+<meta property="og:image" content="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/inlinemath_testweb.gif">
+<meta property="og:image" content="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/testmac_inlinemath.gif">
+<meta property="article:published_time" content="2020-05-26T07:30:00.000Z">
+<meta property="article:modified_time" content="2020-08-09T03:57:38.000Z">
+<meta property="article:author" content="蛋炒饭">
+<meta property="article:tag" content="技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/notion_math.gif">
+
+<link rel="canonical" href="http://tyuanyao.github.io/2020/05/26/notion_inline_math/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Notion上打行内公式｜网页端和Mac电脑端 | 蛋炒饭</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蛋炒饭</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://tyuanyao.github.io/2020/05/26/notion_inline_math/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="蛋炒饭">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋炒饭">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Notion上打行内公式｜网页端和Mac电脑端
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-26 15:30:00" itemprop="dateCreated datePublished" datetime="2020-05-26T15:30:00+08:00">2020-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-09 11:57:38" itemprop="dateModified" datetime="2020-08-09T11:57:38+08:00">2020-08-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/05/26/notion_inline_math/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/26/notion_inline_math/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>已是废文，Notion已经可以用行间公式了。这是Notion还未开发行间公式(Inline Math)时的曲线救国方案。</p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这里说一下</p>
+<ol>
+<li>为什么需要行内公式</li>
+<li>为什么写这篇东西</li>
+</ol>
+<p>马上想看结果的请直接跳转<strong>正文</strong>。</p>
+<p><img src="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/notion_math.gif" alt="Notion只能打一整行数学公式，没法打行内公式"></p>
+<h2 id="为什么需要行内公式"><a href="#为什么需要行内公式" class="headerlink" title="为什么需要行内公式"></a>为什么需要行内公式</h2><p>虽然Notion内置有一个叫<em>Math equation</em>的block选项可以用来打Latex，但是一段公式必须占用一个block，也就是必须占用一行，很不方便。笔记的一些数学符号或者一小段公式没必要占用一行，不然会浪费空间而且搞的笔记不易读。</p>
+<p>然而，没有数学类笔记需要的人这个功能也没什么意义。</p>
+<h2 id="为什么写这篇东西"><a href="#为什么写这篇东西" class="headerlink" title="为什么写这篇东西"></a>为什么写这篇东西</h2><ol>
+<li>总结下已有的行内公式实现方法</li>
+<li>分享Mac电脑端的行内公式糙代码</li>
+<li>记录第一次js编程</li>
+</ol>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><blockquote>
+<p>直接上方法</p>
+</blockquote>
+<h2 id="如何在网页端打行内公式"><a href="#如何在网页端打行内公式" class="headerlink" title="如何在网页端打行内公式"></a>如何在网页端打行内公式</h2><blockquote>
+<p>这里主要以Chrome为例子，其他浏览器应该是相似的。</p>
+</blockquote>
+<ol>
+<li>安装浏览器扩展程序<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Tampermonkey</a>或者<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag">暴力猴</a></li>
+<li>在<a target="_blank" rel="noopener" href="https://github.com/Penguinlay/notion-inline-latex">notion-inline-latex</a>或者<a target="_blank" rel="noopener" href="https://github.com/Tyuanyao/Notion-Inline-Math/tree/master/Web">Notion-Inline-Math/Web/</a> 复制相关的js代码</li>
+<li>在<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Tampermonkey</a>或者<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag">暴力猴</a>中添加新脚本，粘贴刚刚复制的js代码<br> <img src="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/tampermonkeyuse.gif"></li>
+<li>查看脚本是否启动。<br> <img src="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/check1.png"><br> <img src="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/check2.png"></li>
+<li>尝试打公式，按下alt/option就能变成公式了。<br> <img src="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/inlinemath_testweb.gif"></li>
+</ol>
+<h2 id="如何在Mac电脑端打行内公式"><a href="#如何在Mac电脑端打行内公式" class="headerlink" title="如何在Mac电脑端打行内公式"></a>如何在Mac电脑端打行内公式</h2><ol>
+<li><p>在 <a target="_blank" rel="noopener" href="https://gist.github.com/denosawr/8a5e434bd97154fba81ea91e79a8c99b">denosawr/inlinemath-userscript.js</a> 或者 <a target="_blank" rel="noopener" href="https://github.com/Tyuanyao/Notion-Inline-Math/tree/master/Mac%20desktop">Notion-Inline-Math/Mac desktop/</a> 下载js代码</p>
+</li>
+<li><p>在下载的文件夹内打开终端(右键文件夹选择新建位于文件夹位置的终端窗口)</p>
+ <!--    ![](https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/get_terminal.png =100x20）--></li>
+<li><p>运行以下代码</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod <span class="number">777</span> patcher.sh</span><br><span class="line">./patcher.sh</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果没有第一句直接运行<code>./patcher.sh</code>, 可能会报错「permission denied」。</p>
+</blockquote>
+</li>
+<li><p>重启一下Notion，就可以尝试写行间公式了，还挺快的。<br> <img src="https://github.com/Tyuanyao/MarkdownImages/raw/master/Images%2005262020/testmac_inlinemath.gif"></p>
+</li>
+</ol>
+<blockquote>
+<p>只希望官方快点出个更快的</p>
+</blockquote>
+<h2 id="找方法的过程"><a href="#找方法的过程" class="headerlink" title="找方法的过程"></a>找方法的过程</h2><h3 id="网页端行间公式记录"><a href="#网页端行间公式记录" class="headerlink" title="网页端行间公式记录"></a>网页端行间公式记录</h3><p>在网上找了下，网页端的实现已经有了（<a href="www.notion.so/Notion-Inline-Math-9c5047a4e7c84643848b3630db8d5a5e">Notion Inline Math</a>）。不过这个方法有2个问题，</p>
+<ol>
+<li>触发公式转换的符号是 「math：」而不是我们平时打latex时常用的两边「$」。</li>
+<li>触发公式转换的按钮是 <em>F2</em>，对用touchbar的Mac用户不太友好。</li>
+</ol>
+<p>这个在Xiang Jiang的博客<a target="_blank" rel="noopener" href="https://medium.com/@xiangjiang.dal/use-inline-math-in-notion-e26c500fd98">Use inline math in Notion on a Mac</a>上也提到并改进了。</p>
+<blockquote>
+<p>其实早就有直接实现网页端用「$」打行内公式的js代码在<a target="_blank" rel="noopener" href="https://github.com/Penguinlay/notion-inline-latex">notion-inline-latex</a>，当时没发现….</p>
+</blockquote>
+<p>但是他们的方法都还是网页端，这个优点还没在Mac电脑端实现(当然也可能是我还没找到)，所以需要。</p>
+<p>说回一开始找到的老代码，上面那两个功能可以体现在代码的这两个位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">rerender_all</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;rerender all!&quot;</span>)</span><br><span class="line">    <span class="keyword">var</span> mathElement = <span class="built_in">Array</span>.from(<span class="built_in">document</span>.querySelectorAll(<span class="string">&quot;span[style*=\&quot;monospace\&quot;]&quot;</span>))</span><br><span class="line">    <span class="keyword">var</span> filtered = mathElement.filter(<span class="function"><span class="params">el</span> =&gt;</span> el.textContent.startsWith(<span class="string">&quot;math:&quot;</span>))</span><br><span class="line">    filtered.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">        render_one(el)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;keydown&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.key == <span class="string">&quot;F2&quot;</span> &amp;&amp; !e.ctrlKey &amp;&amp; !e.shiftKey &amp;&amp; !e.altKey &amp;&amp; !e.metaKey) &#123;</span><br><span class="line">        rerender_all()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p>Xiang Jiang的博客<a target="_blank" rel="noopener" href="https://medium.com/@xiangjiang.dal/use-inline-math-in-notion-e26c500fd98">Use inline math in Notion on a Mac</a>也是直接修改了这两个地方就实现了</p>
+<ol>
+<li>网页端的「$」符号触发</li>
+<li>option/alt键触发</li>
+</ol>
+<p>为什么要讲这个呢？因为这个关乎于我怎么把Mac电脑端的代码也以同样的方式从「math:」触发改成「$」触发，记录分享一下第一次js代码经验，也许对别人有启发。</p>
+<h3 id="Mac电脑端行间公式记录"><a href="#Mac电脑端行间公式记录" class="headerlink" title="Mac电脑端行间公式记录"></a>Mac电脑端行间公式记录</h3><p>Mac电脑版已有的Notion行间公式实现代码在Github Gist的<a target="_blank" rel="noopener" href="https://gist.github.com/denosawr/8a5e434bd97154fba81ea91e79a8c99b">denosawr/inlinemath-userscript.js</a></p>
+<p>仿照之前的做法，我们把符号触发和按键触发的相应代码找出来，就是这两个地方</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.activeElement.contains(el)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (e.key != <span class="string">&quot;F2&quot;</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (s.startsWith(<span class="string">&quot;math:&quot;</span>)) &#123;</span><br><span class="line"></span><br><span class="line">           el.style.color = <span class="literal">null</span>;</span><br><span class="line">           el.style.background = <span class="literal">null</span>;</span><br><span class="line">           s = s.slice(<span class="number">5</span>).trim();</span><br><span class="line">           katex.render(s, el, &#123;<span class="attr">throwOnError</span>: <span class="literal">true</span>, <span class="attr">font</span>: <span class="string">&quot;mathit&quot;</span>&#125;);</span><br><span class="line">           </span><br><span class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s.startsWith(<span class="string">&quot;,&quot;</span>)) &#123;</span><br><span class="line">           el.style.color = <span class="literal">null</span>;</span><br><span class="line">           el.style.background = <span class="literal">null</span>;</span><br><span class="line">           s = <span class="string">&quot;\\mathrm&#123;&quot;</span> + s.slice(<span class="number">1</span>).trim() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line"></span><br><span class="line">           <span class="keyword">var</span> match;</span><br><span class="line">           <span class="keyword">while</span> (match = s.match(subscript)) &#123;</span><br><span class="line">               s = s.replace(subscript, <span class="string">&quot;_&#123;$1&#125;$2&quot;</span>);</span><br><span class="line">           &#125;</span><br><span class="line">         </span><br><span class="line">           <span class="keyword">while</span> (match = s.match(superscript)) &#123;</span><br><span class="line">               s = s.replace(superscript, <span class="string">&quot;^&#123;$1&#125;$2&quot;</span>);</span><br><span class="line">           &#125;        </span><br><span class="line"></span><br><span class="line">           katex.render(s, el, &#123;<span class="attr">throwOnError</span>: <span class="literal">true</span>, <span class="attr">font</span>: <span class="string">&quot;mathit&quot;</span>&#125;);</span><br><span class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s.startsWith(<span class="string">&quot;$&quot;</span>)) &#123;</span><br><span class="line">           el.style.color = <span class="literal">null</span>;</span><br><span class="line">           el.style.background = <span class="literal">null</span>;</span><br><span class="line">           s = s.slice(<span class="number">1</span>).trim();</span><br><span class="line">           katex.render(s, el, &#123;<span class="attr">throwOnError</span>: <span class="literal">true</span>, <span class="attr">font</span>: <span class="string">&quot;mathit&quot;</span>&#125;);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其实也没啥改的必要，稍微记录一下。</p>
+</blockquote>
+<p>当时把这两个地方修改为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.activeElement.contains(el)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!e.altKey) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>和</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (s.startsWith(<span class="string">&quot;$&quot;</span>) &amp;&amp; s.endsWith(<span class="string">&quot;$&quot;</span>)) &#123; <span class="comment">//</span></span><br><span class="line">            el.style.color = <span class="literal">null</span>;</span><br><span class="line">            el.style.background = <span class="literal">null</span>;</span><br><span class="line">            s = s.substring(<span class="number">1</span>, s.length<span class="number">-1</span>) <span class="comment">//</span></span><br><span class="line">            <span class="comment">// s = s.slice(5).trim();</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;rendering &quot;</span>, s) </span><br><span class="line">            katex.render(s, el, &#123;<span class="attr">throwOnError</span>: <span class="literal">true</span>, <span class="attr">font</span>: <span class="string">&quot;mathit&quot;</span>&#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s.startsWith(<span class="string">&quot;,&quot;</span>)) &#123;</span><br><span class="line">            el.style.color = <span class="literal">null</span>;</span><br><span class="line">            el.style.background = <span class="literal">null</span>;</span><br><span class="line">            s = <span class="string">&quot;\\mathrm&#123;&quot;</span> + s.slice(<span class="number">1</span>).trim() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> match;</span><br><span class="line">            <span class="keyword">while</span> (match = s.match(subscript)) &#123;</span><br><span class="line">                s = s.replace(subscript, <span class="string">&quot;_&#123;$1&#125;$2&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">          </span><br><span class="line">            <span class="keyword">while</span> (match = s.match(superscript)) &#123;</span><br><span class="line">                s = s.replace(superscript, <span class="string">&quot;^&#123;$1&#125;$2&quot;</span>);</span><br><span class="line">            &#125;        </span><br><span class="line"></span><br><span class="line">            katex.render(s, el, &#123;<span class="attr">throwOnError</span>: <span class="literal">true</span>, <span class="attr">font</span>: <span class="string">&quot;mathit&quot;</span>&#125;);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以：</p>
+<ol>
+<li>用option/alt触发公式</li>
+<li>不用「math」符号而用两边的「$」来触发公式</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@xiangjiang.dal/use-inline-math-in-notion-e26c500fd98">https://medium.com/@xiangjiang.dal/use-inline-math-in-notion-e26c500fd98</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.notion.so/Notion-Inline-Math-9c5047a4e7c84643848b3630db8d5a5e">https://www.notion.so/Notion-Inline-Math-9c5047a4e7c84643848b3630db8d5a5e</a></li>
+<li><a target="_blank" rel="noopener" href="https://gist.github.com/denosawr/8a5e434bd97154fba81ea91e79a8c99b">https://gist.github.com/denosawr/8a5e434bd97154fba81ea91e79a8c99b</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Penguinlay/notion-inline-latex">https://github.com/Penguinlay/notion-inline-latex</a></li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>沉迷Notion</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="蛋炒饭 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/04/10/Tech1/" rel="prev" title="重装win10">
+      <i class="fa fa-chevron-left"></i> 重装win10
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要行内公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%99%E8%BF%99%E7%AF%87%E4%B8%9C%E8%A5%BF"><span class="nav-number">1.2.</span> <span class="nav-text">为什么写这篇东西</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E7%BD%91%E9%A1%B5%E7%AB%AF%E6%89%93%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">如何在网页端打行内公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8Mac%E7%94%B5%E8%84%91%E7%AB%AF%E6%89%93%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">如何在Mac电脑端打行内公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%BE%E6%96%B9%E6%B3%95%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">找方法的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E7%AB%AF%E8%A1%8C%E9%97%B4%E5%85%AC%E5%BC%8F%E8%AE%B0%E5%BD%95"><span class="nav-number">2.3.1.</span> <span class="nav-text">网页端行间公式记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac%E7%94%B5%E8%84%91%E7%AB%AF%E8%A1%8C%E9%97%B4%E5%85%AC%E5%BC%8F%E8%AE%B0%E5%BD%95"><span class="nav-number">2.3.2.</span> <span class="nav-text">Mac电脑端行间公式记录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.4.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蛋炒饭</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蛋炒饭</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f2fa6534eb864e1" async="async"></script>
+  </div>
+
+        
+
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
+  <script>
+    firebase.initializeApp({
+      apiKey   : 'AIzaSyC4aTYhB26fInluekTtovHm7rnx8sLxgTg',
+      projectId: 'blog-f0b28'
+    });
+
+    function getCount(doc, increaseCount) {
+      // IncreaseCount will be false when not in article page
+      return doc.get().then(d => {
+        var count = 0;
+        if (!d.exists) { // Has no data, initialize count
+          if (increaseCount) {
+            doc.set({
+              count: 1
+            });
+            count = 1;
+          }
+        } else { // Has data
+          count = d.data().count;
+          if (increaseCount) {
+            // If first view this article
+            doc.set({ // Increase count
+              count: count + 1
+            });
+            count++;
+          }
+        }
+
+        return count;
+      });
+    }
+
+    function appendCountTo(el) {
+      return count => {
+        el.innerText = count;
+      }
+    }
+  </script>
+  <script>
+    (function() {
+      var db = firebase.firestore();
+      var articles = db.collection('articles');
+
+      if (CONFIG.page.isPost) { // Is article page
+        var title = document.querySelector('.post-title').innerText.trim();
+        var doc = articles.doc(title);
+        var increaseCount = CONFIG.hostname === location.hostname;
+        if (localStorage.getItem(title)) {
+          increaseCount = false;
+        } else {
+          // Mark as visited
+          localStorage.setItem(title, true);
+        }
+        getCount(doc, increaseCount).then(appendCountTo(document.querySelector('.firestore-visitors-count')));
+      } else if (CONFIG.page.isHome) { // Is index page
+        var promises = [...document.querySelectorAll('.post-title')].map(element => {
+          var title = element.innerText.trim();
+          var doc = articles.doc(title);
+          return getCount(doc);
+        });
+        Promise.all(promises).then(counts => {
+          var metas = document.querySelectorAll('.firestore-visitors-count');
+          counts.forEach((val, idx) => {
+            appendCountTo(metas[idx])(val);
+          });
+        });
+      }
+    })();
+  </script>
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://tyuanyao.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://tyuanyao.github.io/2020/05/26/notion_inline_math/";
+    this.page.identifier = "2020/05/26/notion_inline_math/";
+    this.page.title = "Notion上打行内公式｜网页端和Mac电脑端";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://tyuanyao.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
